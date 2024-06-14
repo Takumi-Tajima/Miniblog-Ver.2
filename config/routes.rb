@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     # get '/following_posts', to: 'following_posts#index'
     resources :following_posts, only: %i[index]
   end
-  resources :posts, only: %i[index show]
+  resources :posts, only: %i[index show] do
+    resource :likes, only: %i[create destroy]
+  end
 end
