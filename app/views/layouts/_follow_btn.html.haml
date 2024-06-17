@@ -1,0 +1,5 @@
+- if user_signed_in? && current_user != post.user
+  -if current_user.following?(post.user)
+    = button_to 'フォロー解除', relationships_path(user_id: post.user), class: 'btn btn-danger', method: :delete
+  - else
+    = button_to 'フォローする', relationships_path(user_id: post.user), class: 'btn btn-primary'

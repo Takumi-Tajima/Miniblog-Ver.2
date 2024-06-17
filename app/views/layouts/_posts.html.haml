@@ -1,0 +1,12 @@
+%ul.list-group.list-group-flush
+  - posts.each do |post|
+    %li.list-group-item.p-2
+      .fs-6
+        = post.user.name
+      .d-flex.justify-content-between
+        = link_to post_path(post), class: 'text-decoration-none text-body' do
+          .fs-5
+            = post.content
+        = render 'layouts/follow_btn' , post: post
+      .text-sm.text-end.mt-2.text-secondary
+        = l post.created_at

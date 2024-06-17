@@ -5,8 +5,10 @@
       - if user_signed_in?
         -# todo:ユーザープロフィールに遷移させる
         = link_to 'プロフィール', root_path, class: 'text-decoration-none text-body'
-    %li.nav-item
+    %li.nav-item.mt-2
       = link_to '投稿一覧', root_path, class: 'text-decoration-none text-body'
+    %li.nav-item.mt-2
+      = link_to 'フォロー中のユーザーの投稿', following_posts_path, class: 'text-decoration-none text-body'
   .footer
     = link_to '新規投稿', new_post_path, class: 'btn btn-primary d-block'
     - if user_signed_in?
