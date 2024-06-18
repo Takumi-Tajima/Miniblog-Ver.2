@@ -10,4 +10,4 @@
         = render 'layouts/follow_btn' , post: post
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
-        = button_to '❤️', likes_path(post_id: post), class: 'text-decoration-none', method: :post
+        = render 'layouts/like_btn', post: post
