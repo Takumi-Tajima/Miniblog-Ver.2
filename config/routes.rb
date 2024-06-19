@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     resource :relationships, only: %i[create destroy]
     resources :following_posts, only: %i[index]
   end
-  resources :posts, only: %i[index show]
+  resources :posts, only: %i[index show] do
+    resource :likes, only: %i[create destroy], module: :posts
+  end
 end
