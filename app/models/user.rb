@@ -18,8 +18,4 @@ class User < ApplicationRecord
   def following?(user)
     followings.exists?(user.id)
   end
-
-  def already_liked?(post)
-    likes.exists?(post_id: post.id)
-  end
 end
