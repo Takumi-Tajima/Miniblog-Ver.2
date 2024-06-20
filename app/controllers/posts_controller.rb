@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.default_order.preload(:user)
-    @liked_post_ids = current_user&.likes&.pluck(:post_id)
+    @liked_post_ids = current_user ? current_user.likes.pluck(:post_id) : []
   end
 
   def show; end
