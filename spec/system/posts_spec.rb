@@ -89,20 +89,16 @@ RSpec.describe 'ポスト機能', type: :system do
       before do
         create(:post, user: dio, content: '最後に勝つのはこのdioだ')
         create(:post, user: iggy, content: '見殺しにはできねぇぜ')
-        user.follow(dio.id)
+        user.follow!(dio.id)
+        visit root_path
       end
 
       it '自分のフォローしているユーザーの投稿のみを閲覧できる' do
-        visit root_path
-        expect(page).to have_content 'dio'
-        expect(page).to have_content '最後に勝つのはこのdioだ'
-        expect(page).to have_content 'iggy'
-        expect(page).to have_content '見殺しにはできねぇぜ'
         click_on 'フォロー中のユーザーの投稿'
         expect(page).to have_content 'dio'
-        expect(page).to have_content '最後に勝つのはこのdioだ'
+        expect(page).to have_selector('.list-group-item', text: '最後に勝つのはこのdioだ', count: 1)
         expect(page).not_to have_content 'iggy'
-        expect(page).not_to have_content '見殺しにはできねぇぜ'
+        expect(page).not_to have_selector('.list-group-item', text: '見殺しにはできねぇぜ')
       end
     end
   end

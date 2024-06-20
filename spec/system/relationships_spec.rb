@@ -28,7 +28,7 @@ RSpec.describe 'フォロー機能', type: :system do
     before do
       sign_in user
       create(:post, user: other, content: '裁くのは俺のスタンドだ')
-      user.follow(other.id)
+      user.follow!(other.id)
     end
 
     it 'フォロー解除ボタンを押すと、フォロー解除できること' do
