@@ -1,0 +1,6 @@
+.mt-4
+  = simple_form_for @user, url: profile_path do |f|
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    = f.input :about_me
+    = f.url_field :blog_url
+    = f.button :submit, class: 'btn btn-primary'

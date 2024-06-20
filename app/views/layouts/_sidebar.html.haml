@@ -3,8 +3,7 @@
   %ul.nav.nav-pills.flex-column.mb-auto.mt-3
     %li.nav-item
       - if user_signed_in?
-        -# todo:ユーザープロフィールに遷移させる
-        = link_to 'プロフィール', root_path, class: 'text-decoration-none text-body'
+        = link_to 'プロフィール', profile_path, class: 'text-decoration-none text-body'
     %li.nav-item.mt-2
       = link_to '投稿一覧', root_path, class: 'text-decoration-none text-body'
     %li.nav-item.mt-2

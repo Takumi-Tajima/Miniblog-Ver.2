@@ -1,0 +1,9 @@
+.p-4.d-flex.flex-column.justify-content-center.mt-6
+  .post-container.p-3
+    .mb-3
+      = @user.name
+    .mb-3
+      = @user.about_me
+    .mb-3 
+      = @user.blog_url
+    = link_to '編集', edit_profile_path, class: 'btn btn-success'
