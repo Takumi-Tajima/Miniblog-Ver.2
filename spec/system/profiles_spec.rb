@@ -8,7 +8,7 @@ RSpec.describe 'プロフィール機能', type: :system do
   end
 
   context '自分のプロフィールの時' do
-    it '自分のプロフィールを確認できること' do
+    it '確認できること' do
       visit root_path
       within('.nav') do
         click_on 'プロフィール'
@@ -18,7 +18,7 @@ RSpec.describe 'プロフィール機能', type: :system do
       expect(page).to have_content 'google.com'
     end
 
-    it '自分のプロフィールを編集できること' do
+    it '編集できること' do
       visit profile_path
       click_on '編集'
       fill_in '自己紹介',	with: '自己紹介をします'
@@ -38,7 +38,7 @@ RSpec.describe 'プロフィール機能', type: :system do
       create(:post, user: other, content: 'wryyyyyyy')
     end
 
-    it '他人のプロフィールを確認できること' do
+    it '確認できること' do
       visit root_path
       within '.list-group-item' do
         expect(page).to have_content 'wryyyyyyy'
@@ -47,6 +47,11 @@ RSpec.describe 'プロフィール機能', type: :system do
       expect(page).to have_content 'dio'
       expect(page).to have_content '私の名前はdioです'
       expect(page).to have_content 'taji.blog'
+    end
+
+    it '編集できないこと' do
+      visit user_path(other)
+      expect(page).not_to have_content '編集'
     end
   end
 end
