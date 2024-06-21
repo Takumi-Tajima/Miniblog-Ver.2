@@ -2,7 +2,8 @@
   - posts.each do |post|
     %li.list-group-item.p-2
       .fs-6
-        = post.user.name
+        = link_to user_path(post.user), class: 'text-decoration-none text-body' do
+          post.user.name
       .d-flex.justify-content-between
         = link_to post_path(post), class: 'text-decoration-none text-body' do
           .fs-5
