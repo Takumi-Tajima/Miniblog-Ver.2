@@ -1,4 +1,6 @@
-%h1.h3 いいねしたユーザー
-
-- @liked_users.each do |user|
-  = user.name
+%h1.h3.mt-5 いいねしたユーザー
+%ul.list-group.list-group-flush.mt-5
+  - @liked_users.each do |user|
+    %li.list-group-item.p-2
+      = link_to user_path(user), class: 'text-decoration-none text-body p-3' do
+        = user.name
