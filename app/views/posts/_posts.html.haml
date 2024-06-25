@@ -12,3 +12,5 @@
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
         = render 'posts/like_btn', post: post, liked_post_ids: liked_post_ids
+        = link_to post_likes_path(post.id) do
+          = post.likes_count
