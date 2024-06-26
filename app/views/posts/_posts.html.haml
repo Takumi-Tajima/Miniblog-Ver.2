@@ -14,4 +14,5 @@
         .d-flex.flex-row-reverse.align-items-center{test_id: 'like-content'}
           = render 'posts/like_btn', post: post, liked_and_post_ids: liked_and_post_ids
           = link_to post_likes_path(post.id) do
-            = post.likes_count
+            - if post.likes_count.to_i > 0
+              = post.likes_count
