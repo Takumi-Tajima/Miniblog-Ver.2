@@ -17,7 +17,7 @@ RSpec.describe 'いいね機能', type: :system do
       expect do
         find('button[test_id="like"]').click
         expect(page).to have_css('button[test_id="not-like"]')
-      end.to change(user.likes, :count).by(+1)
+      end.to change(user.likes, :count).by(1)
       expect(page).to have_content '1'
     end
   end
