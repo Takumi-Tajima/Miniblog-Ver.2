@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.default_order.preload(:user)
+    # todo リファクタする
     @liked_and_post_ids = current_user ? current_user.likes.select(:id, :post_id).map(&:attributes) : []
   end
 
