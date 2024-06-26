@@ -7,13 +7,16 @@ RSpec.describe 'いいね機能', type: :system do
   before do
     sign_in user
     # ポストを作成する
+    create(:post, user: other_user)
     # factoryでトレットを使用してなんとかする
   end
 
   it 'いいねできること' do
     visit root_path
-    # いいねモデルが+1されてること
-    # 表示：いいねカウントが増えてること
+    within('.list-group-item') do
+      # いいねモデルが+1されてること
+      # 表示：いいねカウントが増えてること
+    end
   end
 
   it 'いいねを消せること' do
