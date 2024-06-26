@@ -11,7 +11,7 @@
         = render 'posts/follow_btn' , post: post
       .text-sm.text-end.mt-2.text-secondary
         = l post.created_at
-        .d-flex.flex-row-reverse.align-items-center
+        .d-flex.flex-row-reverse.align-items-center{test_id: 'like-content'}
           = render 'posts/like_btn', post: post, liked_and_post_ids: liked_and_post_ids
           = link_to post_likes_path(post.id) do
             = post.likes_count
