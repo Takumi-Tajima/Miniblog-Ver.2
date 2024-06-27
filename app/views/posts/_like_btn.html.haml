@@ -1,6 +1,7 @@
--if liked_post_ids.include?(post.id)
-  = button_to post_likes_path(post_id: post), class: 'text-decoration-none btn btn-link text-danger', method: :delete do
+- i = liked_and_post_ids.index{ |v|v['post_id'] == post.id }
+- if i.present?
+  = button_to post_like_path(post_id: liked_and_post_ids[i]['post_id'], id: liked_and_post_ids[i]['id']), class: 'text-decoration-none btn btn-link text-danger', test_id: 'not-like', method: :delete do
     %i.fa-solid.fa-heart
 - else
-  = button_to post_likes_path(post_id: post), class: 'text-decoration-none btn btn-link text-danger', method: :post do
+  = button_to post_likes_path(post_id: post), class: 'text-decoration-none btn btn-link text-danger', test_id: 'like', method: :post do
     %i.fa-regular.fa-heart

@@ -1,4 +1,8 @@
 class Posts::LikesController < ApplicationController
+  def index
+    @liked_users = Post.find(params[:post_id]).liked_users
+  end
+
   def create
     @like_post = current_user.likes.create!(post_id: params[:post_id])
     redirect_to request.referer || root_path
