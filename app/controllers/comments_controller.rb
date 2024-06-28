@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[show edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def new
     @comment = Comment.new
@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      redirect_to @comment, notice: t('controllers.common.created', model: 'コメント')
     else
       render :new, status: :unprocessable_entity
     end
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully updated.', status: :see_other
+      redirect_to @comment, notice: t('controllers.common.created', model: 'コメント'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy!
-    redirect_to comments_url, notice: 'Comment was successfully destroyed.', status: :see_other
+    redirect_to comments_url, notice: t('controllers.common.created', model: 'コメント'), status: :see_other
   end
 
   private
@@ -38,6 +38,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:user_id, :post_id, :content)
+    params.require(:comment).permit(:content)
   end
 end
