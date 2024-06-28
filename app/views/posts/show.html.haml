@@ -10,3 +10,4 @@
     - if current_user == @post.user
       = link_to '編集', edit_post_path, class: 'btn btn-success'
       = button_to '削除', post_path(@post), method: :delete, class: 'btn btn-danger'
+  = render 'posts/comments', comments: @comments
