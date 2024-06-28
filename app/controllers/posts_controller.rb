@@ -4,11 +4,13 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.default_order.preload(:user)
-    # todo リファクタする
+    # TODO: リファクタする
     @liked_and_post_ids = current_user ? current_user.likes.select(:id, :post_id).map(&:attributes) : []
   end
 
-  def show; end
+  def show
+    @comments = @post.comments.all
+  end
 
   private
 
