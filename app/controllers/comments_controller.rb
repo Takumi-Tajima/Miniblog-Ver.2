@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show edit update destroy]
 
-  def show
-  end
-
   def new
     @comment = Comment.new
   end
