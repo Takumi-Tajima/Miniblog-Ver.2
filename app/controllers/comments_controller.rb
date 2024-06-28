@@ -5,9 +5,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  def edit
-  end
-
   def create
     @comment = Comment.new(comment_params)
 
@@ -18,9 +15,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: t('controllers.common.created', model: 'コメント'), status: :see_other
+      redirect_to @comment, notice: t('controllers.common.update', model: 'コメント'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy!
-    redirect_to comments_url, notice: t('controllers.common.created', model: 'コメント'), status: :see_other
+    redirect_to comments_url, notice: t('controllers.common.destroyed', model: 'コメント'), status: :see_other
   end
 
   private
