@@ -4,8 +4,9 @@
       .d-flex.justify-content-between
         .comment
           = comment.content
-        .d-flex
-          = link_to '編集', edit_post_comment_path(post, comment), class: 'btn btn-outline-success'
-          = button_to '削除', post_comment_path(post, comment), method: :delete, class: 'btn btn-outline-danger'
+        - if current_user == comment.user
+          .d-flex
+            = link_to '編集', edit_post_comment_path(post, comment), class: 'btn btn-outline-success'
+            = button_to '削除', post_comment_path(post, comment), method: :delete, class: 'btn btn-outline-danger'
       .text-sm.text-end.mt-2.text-secondary
         = comment.user.name
