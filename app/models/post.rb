@@ -3,5 +3,6 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
+  validates :content, presence: true
   scope :default_order, -> { order(updated_at: :desc) }
 end
