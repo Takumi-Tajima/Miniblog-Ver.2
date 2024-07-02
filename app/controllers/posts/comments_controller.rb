@@ -21,7 +21,7 @@ class Posts::CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to post_path(@post), notice: t('controllers.common.update', model: 'コメント'), status: :see_other
+      redirect_to post_path(@post), notice: t('controllers.common.updated', model: 'コメント'), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
