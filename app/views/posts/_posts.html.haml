@@ -1,17 +1,34 @@
+-# %ul.list-group.list-group-flush
+-#   - posts.each do |post|
+-#     %li.list-group-item.p-2
+-#       .fs-6
+-#         = link_to user_path(post.user), class: 'text-decoration-none text-body' do
+-#           = post.user.name
+-#       .d-flex.justify-content-between
+-#         = link_to post_path(post), class: 'text-decoration-none text-body' do
+-#           .fs-5
+-#             = post.content
+-#         = render 'posts/follow_btn' , post: post
+-#       .text-sm.text-end.mt-2.text-secondary
+-#         = l post.created_at
+-#         .d-flex.flex-row-reverse.align-items-center{ test_id: 'like-content' }
+-#           = render 'posts/like_btn', post: post, liked_and_post_ids: liked_and_post_ids
+-#           - if post.likes_count.to_i > 0
+-#             = link_to post.likes_count, post_likes_path(post.id)
+
 %ul.list-group.list-group-flush
   - posts.each do |post|
-    %li.list-group-item.p-2
-      .fs-6
-        = link_to user_path(post.user), class: 'text-decoration-none text-body' do
-          = post.user.name
-      .d-flex.justify-content-between
-        = link_to post_path(post), class: 'text-decoration-none text-body' do
-          .fs-5
-            = post.content
-        = render 'posts/follow_btn' , post: post
-      .text-sm.text-end.mt-2.text-secondary
-        = l post.created_at
+    %li.list-group-item.p-2.d-flex.justify-content-between
+      .post-image-container
+        = image_tag(post.image.variant(resize: '150x150')) if post.image.attached?
+      .post-info-container.justify-content-between
+        .fs-6
+          = link_to post.user.name, user_path(post.user), class: 'text-decoration-none text-body'
+        .d-flex.justify-content-between
+          = link_to post.content, post_path(post), class: 'text-decoration-none text-body fs-5'
+          = render 'posts/follow_btn' , post: post
+        .text-sm.text-end.mt-2.text-secondary
+          = l post.created_at
         .d-flex.flex-row-reverse.align-items-center{ test_id: 'like-content' }
           = render 'posts/like_btn', post: post, liked_and_post_ids: liked_and_post_ids
-          - if post.likes_count.to_i > 0
-            = link_to post.likes_count, post_likes_path(post.id)
+          = link_to post.likes_count, post_likes_path(post.id) if post.likes_count.to_i > 0
