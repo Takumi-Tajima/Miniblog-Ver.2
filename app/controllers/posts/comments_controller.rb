@@ -1,10 +1,6 @@
 class Posts::CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
-  before_action :set_post, only: %i[new create edit update destroy]
-
-  def new
-    @comment = @post.comments.build
-  end
+  before_action :set_post, only: %i[create edit update destroy]
 
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
