@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @comments = @post.comments.comments_order
+    @comment = @post.comments.build
   end
 
   private
