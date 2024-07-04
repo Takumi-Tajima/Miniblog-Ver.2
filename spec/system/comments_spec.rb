@@ -25,10 +25,9 @@ RSpec.describe 'コメント機能', type: :system do
 
     it 'コメントを投稿できること' do
       visit post_path(post)
-      click_on 'コメントする'
-      fill_in 'コメント', with: 'Railsについてコメントをします'
+      fill_in 'comment[content]', with: 'Railsについてコメントをします'
       expect do
-        click_on '登録する'
+        click_on 'コメントする'
         expect(page).to have_content 'コメントを登録しました。'
       end.to change(post.comments, :count).by(1)
       expect(page).to have_content 'Railsについてコメントをします'
@@ -41,7 +40,7 @@ RSpec.describe 'コメント機能', type: :system do
       within('.list-group-item') do
         click_on '編集'
       end
-      fill_in 'コメント', with: 'こっちのセリフですよ'
+      fill_in 'comment[content]', with: 'こっちのセリフですよ'
       click_on '更新する'
       expect(page).to have_content 'コメントを編集しました。'
       expect(page).not_to have_content '何をやっているんだお前は'
