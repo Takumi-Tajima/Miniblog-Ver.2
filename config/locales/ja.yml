@@ -3,6 +3,8 @@ ja:
     attributes:
       post:
         content: 内容
+      comment:
+        content: コメント
   date:
     abbr_day_names:
       - 日

@@ -1,5 +1,8 @@
 .p-4.d-flex.flex-column.justify-content-center.mt-6
   .post-container.p-3
+    - if @post.image.attached?
+      .image.mb-3
+        = image_tag @post.image.variant(:display)
     .mb-3
       = @post.user.name
     .fs-4
@@ -10,3 +13,6 @@
     - if current_user == @post.user
       = link_to '編集', edit_post_path, class: 'btn btn-success'
       = button_to '削除', post_path(@post), method: :delete, class: 'btn btn-danger'
+  .container.mt-3
+    = render 'posts/comments', comments: @comments
+    = render 'posts/comments/form', comment: @comment, url: post_comments_path(@post)

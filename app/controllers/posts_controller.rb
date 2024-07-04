@@ -3,12 +3,15 @@ class PostsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @posts = Post.default_order.preload(:user)
-    # todo リファクタする
+    @posts = Post.default_order.with_attached_image.preload(:user)
+    # TODO: リファクタする
     @liked_and_post_ids = current_user ? current_user.likes.select(:id, :post_id).map(&:attributes) : []
   end
 
-  def show; end
+  def show
+    @comments = @post.comments.comments_order
+    @comment = @post.comments.build
+  end
 
   private
 

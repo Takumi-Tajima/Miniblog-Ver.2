@@ -1,0 +1,12 @@
+%ul.list-group.list-group-flush
+  - comments.each do |comment|
+    %li.list-group-item.p-2.mt-3
+      .d-flex.justify-content-between
+        .comment
+          = comment.content
+        - if current_user == comment.user
+          .d-flex
+            = link_to '編集', edit_post_comment_path(comment.post, comment), class: 'btn btn-outline-success'
+            = button_to '削除', post_comment_path(comment.post, comment), method: :delete, class: 'btn btn-outline-danger'
+      .text-sm.text-end.mt-2.text-secondary
+        = comment.user.name
