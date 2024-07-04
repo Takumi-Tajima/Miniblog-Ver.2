@@ -43,8 +43,8 @@ RSpec.describe 'コメント機能', type: :system do
       fill_in 'comment[content]', with: 'こっちのセリフですよ'
       click_on '更新する'
       expect(page).to have_content 'コメントを編集しました。'
-      expect(page).not_to have_content '何をやっているんだお前は'
       expect(page).to have_content 'こっちのセリフですよ'
+      expect(page).not_to have_content '何をやっているんだお前は'
     end
 
     it 'コメントを削除できること' do
