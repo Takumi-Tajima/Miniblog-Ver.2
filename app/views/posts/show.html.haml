@@ -1,8 +1,8 @@
 .p-4.d-flex.flex-column.justify-content-center.mt-6
   .post-container.p-3
-  - if @post.image.attached?
-    .image.mb-3
-      = image_tag @post.image.variant(:display)
+    - if @post.image.attached?
+      .image.mb-3
+        = image_tag @post.image.variant(:display)
     .mb-3
       = @post.user.name
     .fs-4
